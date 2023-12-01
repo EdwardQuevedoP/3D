@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>edward</title>
+    <script>
+         fetch('https://goweather.herokuapp.com/weather/Houston')
+    .then(res=>res.json())
+    .then(data=> {
+        const dato = (`la temperatura de Houston es ${data.temperature} y el viento es ${data.wind}`)
+        console.log(`la temperatura de Houston es ${data.temperature} y el viento es ${data.wind}`)
+
+    })
+    
+    </script>
+
+</head>
+
+<body>
+    document.write(dato)
+</body>
+
+</html>

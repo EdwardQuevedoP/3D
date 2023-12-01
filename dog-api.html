@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>edward</title>
+    <h1>hola</h1>
+    <script>
+         //const numero = Math.floor(Math.random() * 826) + 1;
+
+        fetch(`https://dog.ceo/api/breeds/image/random`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.message)
+                document.getElementById('prueba').src=data.message;
+            })
+    </script>
+</head>
+
+<body>
+    <img 
+    id= "prueba"
+    src="" 
+    alt="">
+</body>
+
+</html>
