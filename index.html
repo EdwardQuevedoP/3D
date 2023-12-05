@@ -3,22 +3,46 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>edward</title>
-    <script>
-         fetch('https://goweather.herokuapp.com/weather/Houston')
-    .then(res=>res.json())
-    .then(data=> {
-        const dato = (`la temperatura de Houston es ${data.temperature} y el viento es ${data.wind}`)
-        console.log(`la temperatura de Houston es ${data.temperature} y el viento es ${data.wind}`)
-
-    })
-    
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    document.write(dato)
+    <!-- Canvas: Es solo el area de dibujo -->
+    <!-- Solo se modifica mediante Javascript -->
+    <canvas id="dibujo1" width="400px" height="400px" style="border-style: dashed; border-width: 1px;" />
+    <br>
+    <script>
+        // El area de dibujo tiene un contexto
+        // que es el tipo de "dibujo" que voy a realizar
+        var areaDibujo = document.getElementById("dibujo1");
+        var ctx = areaDibujo.getContext("2d");
+        let radio = 5;
+        var posicionX = Math.floor(Math.random() * 400);
+        var posicionY = Math.floor(Math.random() * 400);
+        // Dibujo n-cantidad de veces circulos
+        function DibujaCirculo() {
+            // Dibujo un circulo
+            ctx.beginPath();
+            ctx.arc(posicionX, posicionY, radio, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#00FF00';
+            ctx.stroke();
+
+            radio += 5;
+            console.log(radio);
+            if (radio > 50) {
+                clearInterval(repeticion);
+                ctx.clearRect(0, 0, 400, 400);
+                repeticion = setInterval(DibujaCirculo, 100)
+                radio = 5
+                posicionX = Math.floor(Math.random() * 400);
+                posicionY = Math.floor(Math.random() * 400);
+            }
+        }
+        var repeticion = setInterval(DibujaCirculo, 100)
+
+
+    </script>
 </body>
 
 </html>

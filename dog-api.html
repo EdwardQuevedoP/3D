@@ -4,24 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>edward</title>
-    <h1>hola</h1>
-    <script>
-         //const numero = Math.floor(Math.random() * 826) + 1;
 
-        fetch(`https://dog.ceo/api/breeds/image/random`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.message)
-                document.getElementById('prueba').src=data.message;
-            })
-    </script>
 </head>
 
 <body>
+    <script>
+        //const numero = Math.floor(Math.random() * 826) + 1;
+        fetch('https://goweather.herokuapp.com/weather/moscu')
+            .then(res => res.json())
+            .then(data => {
+                // Obtener la referencia del elemento de imagen por su ID
+                var imagenElemento = document.getElementById("imagenMostrada");
+
+                if (data.temperature < 16) {
+                    console.log("La temperatura es menor a 16 grados: " + data.temperature);
+                    imagenElemento.src = "https://i.pinimg.com/236x/14/d3/14/14d3141f8e5d002e4d7f11824363312a.jpg";
+                } else {
+                    console.log("La temperatura es mayor o igual a 16 grados: " + data.temperature);
+                    imagenElemento.src = "https://e7.pngegg.com/pngimages/873/875/png-clipart-shivering-common-cold-chills-a-person-shaking-in-a-snowy-day-purple-blue.png";
+                }
+            })
+            .catch(error => console.error("Error al obtener datos del clima:", error));
+    </script>
     <img 
-    id= "prueba"
+    id="imagenMostrada" 
     src="" 
     alt="">
+
 </body>
 
 </html>
