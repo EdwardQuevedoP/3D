@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="areaDibujo" width="500" height="500"></canvas>
+    <script>
+        var canvas = document.getElementById("areaDibujo");
+        var ctx = canvas.getContext("2d");
+        var posicionMario = 0;
+        var posicionLuigi = 400; 
+        var posicionYToad = 0;
+        var posicionYoshi = 500;
+        var disfrazMario=true;
+
+        var marioImagen = new Image();
+        var luigiImagen = new Image();
+        var toadImage = new Image();
+        var yoshiImage=new Image();
+
+        marioImagen.src = 'images/mario1.png'; 
+        luigiImagen.src = 'images/luigi.jpg'; 
+        toadImage.src = 'images/toad.png'; 
+        yoshiImage.src = 'images/yoshi.png';
+
+        yoshiImage.onload = function(){
+            dibujarYoshi();
+        }
+       
+
+        function dibujarMario(){
+           
+            ctx.drawImage(marioImagen, posicionMario, 200, 80, 80);
+            posicionMario += 10;
+            if(disfrazMario==true){
+                marioImagen.src='https://images.wikidexcdn.net/mwuploads/esssbwiki/thumb/c/cb/latest/20220530212008/Mario_Mario_Party_Superstars.png/800px-Mario_Mario_Party_Superstars.png';
+            }
+            else{
+                marioImagen.src='https://supermariorun.com/assets/img/hero/hero_chara_mario_update_pc.png';
+            }
+            
+            disfrazMario=!disfrazMario;
+
+            if (posicionMario >= 400){
+                //posicionMario =0; 
+                marioImagen.src='images/toad.png';
+            }
+        }
+        function dibujarLuigi(){
+            ctx.drawImage(luigiImagen, posicionLuigi, 100, 80, 80);
+            posicionLuigi -= 10;
+            
+            if (posicionLuigi <= 0){ 
+                posicionLuigi = 500;
+            }
+        }
+        function dibujarToad(){
+            ctx.drawImage(toadImage, 0,posicionYToad, 100, 80)
+            posicionYToad +=10;
+            if(posicionYToad >= 500){
+                posicionYToad=0;
+            }
+        }
+        function dibujarYoshi(){
+            ctx.drawImage(yoshiImage, 200,posicionYoshi, 100, 80)
+            posicionYoshi -= 10;
+            if(posicionYoshi <=0){
+                posicionYoshi=500;
+            }
+        }
+        
+        function dibujar(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dibujarMario();
+            //dibujarLuigi();
+            //dibujarToad();
+            //dibujarYoshi(); 
+        }
+
+        setInterval(dibujar,100);
+    </script>
+</body>
+</html>
